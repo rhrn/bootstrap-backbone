@@ -85,28 +85,38 @@
               <input type="tel" name="tel" value="<%- tel %>" placeholder="tel">
             </div>
 
-            <div>
-              <button class="btn" data-toggle="button">Activated</button>
+            <div class="btn-group" data-toggle="buttons-checkbox">
+              <button class="btn<%= (activated == 1)? ' active': '' %>" data-hidden="#h-activated">Activated</button>
             </div>
+
+            <input id="h-activated" type="hidden" name="activated" value="<%= activated %>">
 
             <div>
               Roles
               <div class="btn-group" data-toggle="buttons-checkbox">
-                <button class="btn">Admin</button>
-                <button class="btn">Developer</button>
-                <button class="btn">Tester</button>
-                <button class="btn">Manager</button>
+                <button class="btn<%= (roles.admin == 1)? ' active': '' %>" data-hidden="#h-roles-admin">Admin</button>
+                <button class="btn<%= (roles.developer == 1)? ' active': '' %>" data-hidden="#h-roles-developer">Developer</button>
+                <button class="btn<%= (roles.tester == 1)? ' active': '' %>" data-hidden="#h-roles-tester">Tester</button>
+                <button class="btn<%= (roles.manager == 1)? ' active': '' %>" data-hidden="#h-roles-manager">Manager</button>
               </div>
+
+                <input id="h-roles-admin" type="hidden" name="roles[admin]" value="<%= roles.admin %>">
+                <input id="h-roles-developer" type="hidden" name="roles[developer]" value="<%= roles.developer %>">
+                <input id="h-roles-tester" type="hidden" name="roles[tester]" value="<%= roles.tester %>">
+                <input id="h-roles-manager" type="hidden" name="roles[manager]" value="<%= roles.manager %>">
+
             </div>
 
-          <div>
-            Sex
-            <div class="btn-group" data-toggle="buttons-radio">
-              <button class="btn">Male</button>
-              <button class="btn">Female</button>
-            </div>
-          </div>
+            <div>
+              Sex
+              <div class="btn-group" data-toggle="buttons-radio">
+                <button class="btn<%= (sex == 1)? ' active': '' %>" value="1" data-hidden="#h-sex">Male</button>
+                <button class="btn<%= (sex == 2)? ' active': '' %>" value="2" data-hidden="#h-sex">Female</button>
+                <button class="btn<%= (sex == 0)? ' active': '' %>" value="0" data-hidden="#h-sex">Unknown</button>
+              </div>
 
+                <input id="h-sex" type="hidden" name="sex" value="0">
+            </div>
 
           </form>
         </div>

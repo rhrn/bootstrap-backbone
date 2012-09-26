@@ -6,7 +6,15 @@ $(function() {
       id: null,
       name: "",
       surname: "",
-      tel: ""
+      tel: "",
+      activated: 0,
+      roles: {
+        admin: 0,
+        developer: 0,
+        manager: 0,
+        tester: 0
+      },
+      sex: 1
     },
 
     localStorage: new Backbone.LocalStorage("UserCollection")
@@ -43,7 +51,28 @@ $(function() {
 
     el: $("#el-modal-user"),
 
-    template: _.template($("#template-modal-user").html()),
+    bottons: function(e) {
+
+      var toggle = this.$(e.currentTarget).data('toggle');
+      var target = this.$(e.target),
+        hidden = target.data('hidden');
+
+      if (toggle === "buttons-checkbox") {
+        value = (target.hasClass("active"))? 0 : 1;
+      } else if (toggle === "buttons-radio") {
+        value = target.val();
+      }
+
+      this.$(hidden).val(value);
+
+      e.preventDefault(); 
+    },
+
+    initialize: function() {
+      this.events["click .btn-group"] = "bottons";
+    },
+
+    template: _.template($("#template-modal-user").html())
 
   });
 
@@ -67,6 +96,7 @@ $(function() {
       this.userModal = new UserModal({collection: this.userCollection});
 
       this.userModal.on("close", this.index, this);
+
     },
 
     index: function() {
