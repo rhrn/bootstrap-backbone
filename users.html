@@ -130,9 +130,13 @@
     <script id="template-user-item" type="text/template">
       <div>
         <a href="#!/editUser:<%= id %>"><i class="icon-edit"></i></a>
+
+        <% if(activated == 1) { %> <i class="icon-ok"></i> <% } %>
         <%- name %>
         <%- surname %>
         <%- tel %>
+        <% if(sex == 1) { %> &#9794; <% } else if (sex == 2) { %> &#9792; <% } %>
+
         <a href="#!/removeUser:<%= id %>"><i class="icon-remove"></i></a>
       </div>
     </script>
@@ -147,7 +151,7 @@
 
     <script src="bootstrap-backbone.js"></script>
 
-    <script src="app.js"></script>
+    <script src="users.js"></script>
 
   </body>
 
